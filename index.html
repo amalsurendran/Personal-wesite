@@ -9,7 +9,6 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-
   <link href="assets/img/amal.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -24,7 +23,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
-
+  <script src="assets/css/jquery.min.js"></script>
 
 </head>
 
@@ -377,32 +376,18 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms" method="post" role="form" class="php-email-form" name="contact us">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
+            <div class="col-md-6 mail_right">
+              <div class="col-md-6 mail_right">
+                <form method="post" id="frmSubmit" name="myForm">
+                  <input type="text"  name="name" id="name" placeholder="Name" required>
+                  <input type="email"  name="email" placeholder="Email Address" required>
+                  <input type="text"  name="mobile" placeholder="Mobile" required>
+                  <textarea name="message" type="text" placeholder="Message"  required=""></textarea>
+                  <button type="submit" class="btn btn-success" id="btnSubmit">Submit</button>
+                   <div id="msg"></div>
+                </form>
               </div>
-              <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"> </div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+            </div>
           </div>
 
         </div>
@@ -436,18 +421,62 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-  <script src="assets/js/main.js"></script>
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwneIrZig9Ppya7YAiagqLiNZ1YPP8Kk6Z18STg_zx-PUhZDHihoSWsFCt-CJKYGWYI/exec'
-    const form = document.forms['contact us']
   
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
+
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script>
+  $("form[name='myForm']").validate({
+      rules: {
+          name : {
+            required      : true,
+          },
+    email : {
+            required      : true,
+      email 		: true
+          },
+    mobile : {
+            required      : true,
+          },
+    message : {
+            required      : true,
+          },
+      },
+      messages: {
+          name       : "This field is required.",
+      },
+      submitHandler: function(form) {
+    jQuery('#msg').html('Please wait...');
+    jQuery('#frmSubmit').attr('disabled',true);
+    jQuery.ajax({
+      url:'AKfycbyyvoJUKxXCNxJhwFB42ngGe1c1fCeIzk_9w5nvbuCuuGDaLkmWFd6JGvbY0o-ROXaw',
+      type:'post',
+      data:jQuery('#form').serialize(),
+      success:function(result){
+      console.log(result.result);
+      if(result.result =='success'){
+        Swal.fire(
+          'Success!',
+          'Will contact you soon',
+          'success'
+        );
+      }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        })
+        }
+      jQuery('#form')[0].reset();
+      jQuery('#msg').html('Thank You');
+      jQuery('#btnSubmit').attr('disabled',false);
+      }
+    });
+      }
+  });
+  
+</script>
 
 </body>
 
