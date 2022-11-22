@@ -215,3 +215,69 @@
   new PureCounter();
 
 })()
+
+form.addEventListener("submit", function validate(evt){
+    
+  if(evt.target[0]== ""){
+      alert("Please enter your name!");
+      evt.preventDefault();
+  }
+
+  if(evt.target[1]== ""){
+      alert("Please enter your email!");
+      evt.preventDefault();
+  }
+
+  if(evt.target[2]== ""){
+      alert("Please enter the message's subject!");
+      evt.preventDefault();
+  }
+
+  if(evt.target[3]== ""){
+      alert("Please enter a message!");
+      evt.preventDefault();
+  }
+  
+});
+
+$(document).ready(function() {
+  $("#form-as").validate({
+    rules: {
+      name : {
+        required: true,
+        minlength: 3
+      },
+     
+      email: {
+        required: true,
+        email: true
+      },
+      suject:{
+        required:true,
+        suject:true
+      },
+      message:{
+        required:true,
+        message:true
+      }
+    
+    },
+    messages : {
+      name: {
+        minlength: "Name should be at least 3 characters"
+      },
+   
+      email: {
+        email: "The email should be in the format: abc@domain.tld"
+      },
+      subject:{
+        suject: "add subject"
+      },
+      message: {
+        message:"message"
+      }
+      
+    
+    }
+  });
+});
