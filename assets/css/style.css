@@ -1157,14 +1157,20 @@ padding:5px;
 resize:none;
 }
 span{
-color:rgb(2, 2, 2)
+color:rgb(255, 255, 255)
 }
 #note{
-color:black;
+color:rgb(232, 232, 232);
 font-Weight:400;
 }
 #returnmessage{
 font-size:14px;
 color:green;
 text-align:center;
+}
+.side span{
+  color: white !important;
+}
+#asd{
+  color: black !important;
 }
