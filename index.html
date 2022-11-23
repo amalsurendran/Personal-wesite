@@ -377,7 +377,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch m-lg-5">
-            <form name="contactForm" onsubmit="return validateForm()" action="/examples/actions/confirmation.php" method="post">
+            <form name="contactForm" onsubmit="return validateForm()"  method="post" id="formid">
               <h2>Application Form</h2>
               <div class="row">
                   <label>Full Name</label>
@@ -402,7 +402,7 @@
              
               
               <div class="row">
-                  <input type="submit" value="Submit">
+                  <input type="submit" value="Submit" id="butsub">
               </div>
           </form>
             
@@ -528,39 +528,42 @@
         // Validate message
 
         if(message == "") {
-            printError("messageErr", "Please enter your message");
-        } else {
-            // Regular expression for basic email validation
-            var regex = /^\S+@\S+\.\S+$/;
-            if(regex.test(message) === false) {
-                // printError("messageErr", "Please enter a message");
-            } else{
-                printError("messageErr", "");
-                messageErr = false;
-            }
-        }
+				printError("messageErr", "Please enter the message");
+			}else{
+				printError("messageErr", "");
+				messageErr = false;
+			}
         
         // Validate gender
     
         
         // Prevent the form from being submitted if there are any errors
-        if((nameErr || emailErr || mobileErr ||  messageErr) == true) {
-           return false;
-        } else {
-            // Creating a string from input data for preview
-            var dataPreview = "You've entered the following details: \n" +
-                              "Full Name: " + name + "\n" +
-                              "Email Address: " + email + "\n" +
-                              "Mobile Number: " + mobile + "\n" +
-                              "Message: " + message + "\n" 
-                              // "Gender: " + gender + "\n";
-            // if(hobbies.length) {
-            //     dataPreview += "Hobbies: " + hobbies.join(", ");
-            // }
-            // Display input data in a dialog box before submitting the form
-            alert(dataPreview);
-        }
+        if((nameErr || emailErr || mobileErr || messageErr) != true) {
+				var form = document.getElementById('formid');
+				var xhr = new XMLHttpRequest();
+				var data = new FormData(form);
+				console.log(data);
+				//Add extra data to form before submission.
+				// data.append("referer","https://example.com");
+				//open the request
+				xhr.open('POST','https://script.google.com/macros/s/AKfycbwneIrZig9Ppya7YAiagqLiNZ1YPP8Kk6Z18STg_zx-PUhZDHihoSWsFCt-CJKYGWYI/exec')
+				//send the form data
+				xhr.send(data);
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == XMLHttpRequest.DONE) {
+						form.reset(); //reset form after AJAX success.
+					}
+				}
+				//Dont submit the form.
+				return false; 
+			}else{
+				return false;
+			}
     };
+
+
+
+    
     </script>
  
 
