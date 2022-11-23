@@ -396,9 +396,9 @@
               </div>
                <div class="row">
                           <label for="name">Message</label>
-                          <textarea class="error"   name="message" rows="5" style="color: rgb(6, 5, 5);"></textarea>
+                          <textarea class="error"   name="message" rows="5" style="color: rgb(0, 0, 0);"></textarea>
                         </div>
-                        <div class="error" id="messageErr"></div>
+                        <div class="error" id="messageErr" style="color:rgb(255, 0, 0);"></div>
              
               
               <div class="row">
@@ -533,7 +533,7 @@
             // Regular expression for basic email validation
             var regex = /^\S+@\S+\.\S+$/;
             if(regex.test(message) === false) {
-                printError("messageErr", "Please enter a message");
+                // printError("messageErr", "Please enter a message");
             } else{
                 printError("messageErr", "");
                 messageErr = false;
