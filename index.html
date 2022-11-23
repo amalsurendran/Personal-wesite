@@ -51,12 +51,12 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span class="side">Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span class="side">About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span class="side">Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span class="side">Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span class="side">Services</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span class="side">Contact</span></a></li>
+          <li><a href="#hero" target="_blank" class="nav-link scrollto active"><i class="bx bx-home"></i> <span class="side">Home</span></a></li>
+          <li><a href="#about"  target="_blank" class="nav-link scrollto"><i class="bx bx-user"></i> <span class="side">About</span></a></li>
+          <li><a href="#resume" target="_blank" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span class="side">Resume</span></a></li>
+          <li><a href="#portfolio" target="_blank" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span class="side">Portfolio</span></a></li>
+          <li><a href="#services" target="_blank" class="nav-link scrollto"><i class="bx bx-server"></i> <span class="side">Services</span></a></li>
+          <li><a href="#contact" target="_blank" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span class="side">Contact</span></a></li>
         </ul>
       </nav>
     </div>
@@ -397,9 +397,9 @@
                 <label for="name">Message</label>
                 <textarea class="form-control" name="message" rows="10"></textarea>
               </div>
-              <div class="my-3">
+              <div class="my-3" id="msg">
                 <div class="loading msg">Loading</div>
-                <div class="error-message"> </div>
+                <div class="error-message"> Please wait... </div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center "><button type="submit" id="butns" style="color:rgb(255, 255, 255) ;" >Send Message</button></div>
