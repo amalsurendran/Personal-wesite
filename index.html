@@ -462,6 +462,7 @@
        
         if(name == "") {
             printError("nameErr", "Please enter your name");
+            
         } else {
             var regex = /^[a-zA-Z\s]+$/;                
             if(regex.test(name) === false) {
@@ -489,7 +490,7 @@
        
         if(mobile == "") {
             printError("mobileErr", "Please enter your mobile number");
-        } else {
+       } else {
             var regex = /^[1-9]\d{9}$/;
             if(regex.test(mobile) === false) {
                 printError("mobileErr", "Please enter a valid 10 digit mobile number");
@@ -503,6 +504,7 @@
 
         if(message == "") {
 				printError("messageErr", "Please enter the message");
+ 
 			}else{
 				printError("messageErr", "");
 				messageErr = false;
@@ -523,11 +525,13 @@
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == XMLHttpRequest.DONE) {
 						form.reset(); 
-            Swal.fire(
-  'SUCCESS!',
-  'We will contact!',
-  'Thank you'
-)
+            Swal.fire({
+  
+  icon: 'success',
+  title: 'Successfull',
+  showConfirmButton: false,
+  timer: 1500
+})
 					}
 				} 
         
@@ -537,7 +541,16 @@
 		
 				return false; 
 			}else{
+
+
+        Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+  footer: '<a href="#formid">Please enter </a>'
+})
 				return false;
+
 			}
     };
 
